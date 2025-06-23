@@ -1,0 +1,27 @@
+<div class="ms-{{ level|add:2 }} mb-2">
+  <details>
+    <summary>
+      <strong>{{ node.item.child.name }}</strong>
+      ({{ node.item.child.part_number }}) × {{ node.item.quantity }}
+      <small class="text-muted">v{{ node.item.child.version }}</small>
+
+      {% if node.documents %}
+        <span class="text-primary ms-2">📎</span>
+      {% endif %}
+    </summary>
+
+    {% if node.documents %}
+      <ul class="list-unstyled ms-3 mt-2">
+        {% for doc in node.documents %}
+          <li>
+            📄 <a href="{{ doc.file.url }}" target="_blank">{{ doc.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% for child_node in node.children %}
+      {% include "bom/bom_node.html" with node=child_node level=level|add:1 %}
+    {% endfor %}
+  </details>
+</div>

@@ -1,0 +1,14 @@
+<ul class="list-group list-group-flush ms-3">
+    {% for item in part.bom_parent.all %}
+        <li class="list-group-item">
+            <strong>{{ item.child.name }}</strong>
+            ({{ item.child.part_number }}) × {{ item.quantity }}
+            <span class="text-muted">v{{ item.child.version }}</span>
+
+            {% if item.child.bom_parent.all %}
+                {# Nested children shown recursively #}
+                {% include "bom/bom_item_recursive.html" with part=item.child %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

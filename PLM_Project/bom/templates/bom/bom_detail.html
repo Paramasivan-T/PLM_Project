@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM for {{ part.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-4">
+
+<div class="container">
+    <h2 class="mb-4">📦 Bill of Materials for: <strong>{{ part.name }}</strong> ({{ part.part_number }})</h2>
+
+    {% if bom_tree %}
+        <div class="card shadow-sm p-3">
+            {% for node in bom_tree %}
+                {% include "bom/bom_node.html" with node=node level=0 %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning">No BOM items found for this part.</div>
+    {% endif %}
+
+    <a href="/bom/" class="btn btn-outline-secondary mt-4">← Back to Assemblies</a>
+</div>
+
+</body>
+</html>
