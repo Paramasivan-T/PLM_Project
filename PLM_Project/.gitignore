@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Environment
+.env
+venv/
+PLMenv/
+
+# Database
+*.sqlite3
+
+# Django media (user uploads)
+media/
+
+# VS Code
+.vscode/
+
+# OS generated
+.DS_Store
+Thumbs.db
